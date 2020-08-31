@@ -67,7 +67,7 @@ python save_model.py --weights ./data/yolo-tinyv4-obj_final.weights --output ./w
 python save_model.py --weights ./data/yolo-tinyv4-obj_final.weights --output ./weights/yolov4-tiny-1 --input_size 416 --model yolov4 --tiny
 
 # custom yolov4
-python save_model.py --weights ./data/custom.weights --output ./weights/custom-416 --input_size 416 --model yolov4 
+python save_model.py --weights ./data/custom.weights --output ./weights/custom-1 --input_size 416 --model yolov4 
 
 # Run yolov4 tensorflow model
 python detect.py --weights ./weights/yolov4-1 --size 416 --model yolov4 --images ./data/images/kite.jpg
