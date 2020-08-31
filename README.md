@@ -61,31 +61,31 @@ To implement YOLOv4 using TensorFlow, first we convert the .weights into the cor
 ```bash
 # Convert darknet weights to tensorflow
 ## yolov4
-python save_model.py --weights ./data/yolov4.weights --output ./checkpoints/yolov4-416 --input_size 416 --model yolov4 
+python save_model.py --weights ./data/yolo-tinyv4-obj_final.weights --output ./weights/yolov4-1 --input_size 416 --model yolov4 
 
 # yolov4-tiny
-python save_model.py --weights ./data/yolov4-tiny.weights --output ./checkpoints/yolov4-tiny-416 --input_size 416 --model yolov4 --tiny
+python save_model.py --weights ./data/yolo-tinyv4-obj_final.weights --output ./weights/yolov4-tiny-1 --input_size 416 --model yolov4 --tiny
 
 # custom yolov4
-python save_model.py --weights ./data/custom.weights --output ./checkpoints/custom-416 --input_size 416 --model yolov4 
+python save_model.py --weights ./data/custom.weights --output ./weights/custom-416 --input_size 416 --model yolov4 
 
 # Run yolov4 tensorflow model
-python detect.py --weights ./checkpoints/yolov4-416 --size 416 --model yolov4 --images ./data/images/kite.jpg
+python detect.py --weights ./weights/yolov4-1 --size 416 --model yolov4 --images ./data/images/kite.jpg
 
 # Run yolov4-tiny tensorflow model
-python detect.py --weights ./checkpoints/yolov4-tiny-416 --size 416 --model yolov4 --images ./data/images/kite.jpg --tiny
+python detect.py --weights ./weights/yolov4-tiny-1 --size 416 --model yolov4 --images ./data/images/kite.jpg --tiny
 
 # Run custom yolov4 tensorflow model
-python detect.py --weights ./checkpoints/custom-416 --size 416 --model yolov4 --images ./data/images/car.jpg
+python detect.py --weights ./weights/custom-1 --size 416 --model yolov4 --images ./data/images/car.jpg
 
 # Run yolov4 on video
-python detect_video.py --weights ./checkpoints/yolov4-416 --size 416 --model yolov4 --video ./data/video/video.mp4 --output ./detections/results.avi
+python detect_video.py --weights ./weights/yolov4-1 --size 416 --model yolov4 --video ./data/video/test_2.mp4 --output ./detections/results.avi
 
 # Run custom yolov4 model on video
-python detect_video.py --weights ./checkpoints/custom-416 --size 416 --model yolov4 --video ./data/video/cars.mp4 --output ./detections/results.avi
+python detect_video.py --weights ./weights/custom-1 --size 416 --model yolov4 --video ./data/video/cars.mp4 --output ./detections/results.avi
 
 # Run yolov4 on webcam
-python detect_video.py --weights ./checkpoints/yolov4-416 --size 416 --model yolov4 --video 0 --output ./detections/results.avi
+python detect_video.py --weights ./weights/yolov4-1 --size 416 --model yolov4 --video 0 --output ./detections/results.avi
 ```
 If you want to run yolov3 or yolov3-tiny change ``--model yolov3`` and .weights file in above commands.
 
@@ -107,28 +107,28 @@ Video saves wherever you point --output flag to. If you don't set the flag then 
 Can also implement YOLOv4 using TensorFlow Lite. TensorFlow Lite is a much smaller model and perfect for mobile or edge devices (raspberry pi, etc).
 ```bash
 # Save tf model for tflite converting
-python save_model.py --weights ./data/yolov4.weights --output ./checkpoints/yolov4-416 --input_size 416 --model yolov4 --framework tflite
+python save_model.py --weights ./data/yolov4.weights --output ./weights/yolov4-1 --input_size 416 --model yolov4 --framework tflite
 
 # Save custom yolov4 tf model for tflite converting
-python save_model.py --weights ./data/custom.weights --output ./checkpoints/custom-416 --input_size 416 --model yolov4 --framework tflite
+python save_model.py --weights ./data/custom.weights --output ./weights/custom-1 --input_size 416 --model yolov4 --framework tflite
 
 # yolov4
-python convert_tflite.py --weights ./checkpoints/yolov4-416 --output ./checkpoints/yolov4-416.tflite
+python convert_tflite.py --weights ./weights/yolov4-1 --output ./weights/yolov4-1.tflite
 
 # convert custom yolov4 tflite model
-python convert_tflite.py --weights ./checkpoints/custom-416 --output ./checkpoints/custom-416.tflite
+python convert_tflite.py --weights ./weights/custom-1 --output ./weights/custom-416.tflite
 
 # yolov4 quantize float16
-python convert_tflite.py --weights ./checkpoints/yolov4-416 --output ./checkpoints/yolov4-416-fp16.tflite --quantize_mode float16
+python convert_tflite.py --weights ./weights/yolov4-1 --output ./weights/yolov4-416-fp16.tflite --quantize_mode float16
 
 # yolov4 quantize int8
-python convert_tflite.py --weights ./checkpoints/yolov4-416 --output ./checkpoints/yolov4-416-int8.tflite --quantize_mode int8 --dataset ./coco_dataset/coco/val207.txt
+python convert_tflite.py --weights ./weights/yolov4-1 --output ./weights/yolov4-416-int8.tflite --quantize_mode int8 --dataset ./coco_dataset/coco/val207.txt
 
 # Run tflite model
-python detect.py --weights ./checkpoints/yolov4-416.tflite --size 416 --model yolov4 --images ./data/images/kite.jpg --framework tflite
+python detect.py --weights ./weights/yolov4-1.tflite --size 416 --model yolov4 --images ./data/images/kite.jpg --framework tflite
 
 # Run custom tflite model
-python detect.py --weights ./checkpoints/custom-416.tflite --size 416 --model yolov4 --images ./data/images/car.jpg --framework tflite
+python detect.py --weights ./weights/custom-1.tflite --size 416 --model yolov4 --images ./data/images/car.jpg --framework tflite
 ```
 ### Result Image (TensorFlow Lite)
 You can find the outputted image(s) showing the detections saved within the 'detections' folder.
@@ -140,17 +140,17 @@ Yolov4 and Yolov4-tiny int8 quantization have some issues. I will try to fix tha
 ## YOLOv4 Using TensorRT
 Can also implement YOLOv4 using TensorFlow's TensorRT. TensorRT is a high-performance inference optimizer and runtime that can be used to perform inference in lower precision (FP16 and INT8) on GPUs. TensorRT can allow up to 8x higher performance than regular TensorFlow.
 ```bash# yolov3
-python save_model.py --weights ./data/yolov3.weights --output ./checkpoints/yolov3.tf --input_size 416 --model yolov3
-python convert_trt.py --weights ./checkpoints/yolov3.tf --quantize_mode float16 --output ./checkpoints/yolov3-trt-fp16-416
+python save_model.py --weights ./data/yolov3.weights --output ./weights/yolov3.tf --input_size 416 --model yolov3
+python convert_trt.py --weights ./weights/yolov3.tf --quantize_mode float16 --output ./weights/yolov3-trt-fp16-416
 
 # yolov3-tiny
-python save_model.py --weights ./data/yolov3-tiny.weights --output ./checkpoints/yolov3-tiny.tf --input_size 416 --tiny
-python convert_trt.py --weights ./checkpoints/yolov3-tiny.tf --quantize_mode float16 --output ./checkpoints/yolov3-tiny-trt-fp16-416
+python save_model.py --weights ./data/yolov3-tiny.weights --output ./weights/yolov3-tiny.tf --input_size 416 --tiny
+python convert_trt.py --weights ./weights/yolov3-tiny.tf --quantize_mode float16 --output ./weights/yolov3-tiny-trt-fp16-416
 
 # yolov4
-python save_model.py --weights ./data/yolov4.weights --output ./checkpoints/yolov4.tf --input_size 416 --model yolov4
-python convert_trt.py --weights ./checkpoints/yolov4.tf --quantize_mode float16 --output ./checkpoints/yolov4-trt-fp16-416
-python detect.py --weights ./checkpoints/yolov4-trt-fp16-416 --model yolov4 --images ./data/images/kite.jpg --framework trt
+python save_model.py --weights ./data/yolo-tiny-obj_final.weights --output ./weights/yolov4.tf --input_size 416 --model yolov4
+python convert_trt.py --weights ./weights/yolov4.tf --quantize_mode float16 --output ./weights/yolov4-trt-fp16-416
+python detect.py --weights ./weights/yolov4-trt-fp16-416 --model yolov4 --images ./data/images/test25.jpg --framework trt
 ```
 
 ## Command Line Args Reference
@@ -158,9 +158,9 @@ python detect.py --weights ./checkpoints/yolov4-trt-fp16-416 --model yolov4 --im
 ```bash
 save_model.py:
   --weights: path to weights file
-    (default: './data/yolov4.weights')
+    (default: './data/yolo-tinyv4-obj_final.weights')
   --output: path to output
-    (default: './checkpoints/yolov4-416')
+    (default: './weights/yolov4-1')
   --[no]tiny: yolov4 or yolov4-tiny
     (default: 'False')
   --input_size: define input size of export model
@@ -200,7 +200,7 @@ detect_video.py:
   --[no]tiny: yolov4 or yolov4-tiny
     (default: 'false')
   --weights: path to weights file
-    (default: './weights/yolov4-4')
+    (default: './weights/yolov4-1')
   --framework: what framework to use (tf, trt, tflite)
     (default: tf)
   --model: yolov3 or yolov4

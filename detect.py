@@ -19,7 +19,7 @@ flags.DEFINE_string('weights', './weights/yolov4-1',
 flags.DEFINE_integer('size', 416, 'resize images to')
 flags.DEFINE_boolean('tiny', False, 'yolo or yolo-tiny')
 flags.DEFINE_string('model', 'yolov4', 'yolov3 or yolov4')
-flags.DEFINE_list('images', './data/images/kite.jpg', 'path to input image')
+flags.DEFINE_list('images', './data/images/test1.jpg', 'path to input image')
 flags.DEFINE_string('output', './detections/', 'path to output folder')
 flags.DEFINE_float('iou', 0.45, 'iou threshold')
 flags.DEFINE_float('score', 0.25, 'score threshold')
